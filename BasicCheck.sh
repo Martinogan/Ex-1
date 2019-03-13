@@ -19,7 +19,7 @@ if [ $successcmp -gt 0 ]; then
 	exit 7
 fi
 
-valgrind --tool=memcheck $dirpath/$program  &>/dev/null
+valgrind $dirpath/$program  &>/dev/null
 
 successmem=$?
 
