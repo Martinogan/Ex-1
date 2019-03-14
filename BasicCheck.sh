@@ -17,8 +17,7 @@ if [ $successcmp -gt 0 ]; then
 	echo "Compilation FAIL"
 	comp = "FAIL"
 	exit 7
-fi
-
+else 
 valgrind --tool=memcheck --leak-check=full $dirpath/$program  &>/dev/null
 
 successmem=$?
@@ -26,8 +25,7 @@ successmem=$?
 if [ $successmem -gt 0 ]; then
 	meml = "FAIL"
 	exit 2
-fi
-
+else
 valgrind --tool=helgrind $dirpath/$program  &>/dev/null
 
 successtrd=$?
@@ -35,9 +33,12 @@ successtrd=$?
 if [ $successtrd -gt 0 ]; then
 	trdr = "FAIL"
 	exit 1
+else
+exit 0
+
+fi
+fi
 fi
 
 echo "Compilation "   "Memory leaks "  "thread race"
 echo   "$comp          "        "$meml             "           "$trdr"
-
-exit 0
