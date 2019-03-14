@@ -22,9 +22,8 @@ fi
 valgrind --tool=memcheck --leak-check=full $dirpath/$program  &>/dev/null
 
 successmem=$?
-echo $successmem
+
 if [ $successmem -gt 0 ]; then
-	echo "im not here"
 	meml = "FAIL"
 	exit 2
 fi
@@ -32,9 +31,8 @@ fi
 valgrind --tool=helgrind $dirpath/$program  &>/dev/null
 
 successtrd=$?
-echo $successtrd
+
 if [ $successtrd -gt 0 ]; then
-	echo "im not here 2"
 	trdr = "FAIL"
 	exit 1
 fi
